@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="title-pag">CHEECKLIST</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Registro</ion-card-title>
+    </ion-card-header>
+
+    <div class="container"> <ion-card-content>
+        <!-- NOMBRE -->
+        <ion-item>
+          <ion-input [(ngModel)]="Usuario" label="Usuario: "></ion-input>
+        </ion-item>
+        <!-- CONTRASEÑA -->
+        <ion-item>
+          <ion-input [(ngModel)]="Password" type="password" label="contraseña: "></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select (ionChange)="cargarComuna()" [(ngModel)]="regionSel"  label="Region" placeholder="Seleccione">
+          <ion-select-option *ngFor="let i of regiones" [value]="i.id">{{i.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item> 
+      <ion-item>
+        <ion-select [disabled]="seleccionComuna" [(ngModel)]="regionSel"  label="Comuna" placeholder="Seleccione">
+          <ion-select-option *ngFor="let i of comunas" [value]="i.id">{{i.nombre}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button (click)="registro()" color="primary"  shape="round"><ion-icon slot="start"></ion-icon> Registro </ion-button>
+    
+      

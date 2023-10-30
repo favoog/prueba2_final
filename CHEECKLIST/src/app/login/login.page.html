@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title-login">CHEECKLIST</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-text class="h6">
+  <h6></h6>
+</ion-text>
+
+<ion-content>
+  <ion-card>
+    <!-- <ion-card-header>
+      <ion-card-title class="titulo-card">Bienvenido!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formularioLogin">
+        <ion-item>
+          <ion-label position="floating">usuario</ion-label>
+          <ion-input formControlName="nombre"></ion-input>
+        </ion-item>
+        <ion-label color="danger" *ngIf="formularioLogin.controls.nombre.errors?.['required'] && (formularioLogin.controls.nombre.touched || formularioLogin.controls.nombre.dirty)">* El Usuario es obligatoria"</ion-label>
+        <ion-label color="danger" *ngIf="formularioLogin.controls.nombre.errors?.['minlength'] && (formularioLogin.controls.nombre.touched || formularioLogin.controls.nombre.dirty)">* El Usuario debe contener 3 caracteres"</ion-label>
+        <ion-label color="danger" *ngIf="formularioLogin.controls.nombre.errors?.['maxlength'] && (formularioLogin.controls.nombre.touched || formularioLogin.controls.nombre.dirty)">* El Usuario no debe ser mayor a 8 caracteres"</ion-label>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input  class="ion-input" formControlName="Password" type="Password"></ion-input>
+        </ion-item>
+        <ion-label color="danger" *ngIf="formularioLogin.controls.Password.errors?.['required'] && (formularioLogin.controls.Password.touched || formularioLogin.controls.Password.dirty)">* La contraseña es obligatoria"</ion-label>
+        <ion-label color="danger" *ngIf="formularioLogin.controls.Password.errors?.['minlength'] && (formularioLogin.controls.Password.touched || formularioLogin.controls.Password.dirty)">* La contrañsena debe contener 4 caracteres"</ion-label>
+        <ion-label color="danger" *ngIf="formularioLogin.controls.Password.errors?.['maxlength'] && (formularioLogin.controls.Password.touched || formularioLogin.controls.Password.dirty)">* La contraseña no debe ser mayor a 4 caracteres"</ion-label>
+      </form>
+      <br>
+      <ion-button class="btn-ingresar" color="success" [disabled]="!formularioLogin.valid" (click)="goDatosP()" >
+        Ingresar
+      </ion-button> <ion-button class="btn-registro" [routerLink]="['/registro']">Registrate</ion-button>
+      <ion-button expand="block" color="danger" [routerLink]="['/recuperar-password']"> Olvidaste tu contraseña?</ion-button>
+    </ion-card-content> -->
+
+    <div class="container">  <ion-card-content>
+      <ion-input [(ngModel)]="usuario" label="Usuario: "></ion-input>
+      <ion-input [(ngModel)]="Password" type="password" label="contraseña: "></ion-input>
+      <ion-button (click)="onLogin()" color="primary"  shape="round"><ion-icon ></ion-icon> Iniciar Sesion </ion-button>
+      <ion-button (click)="registro()" color="primary"  shape="round"><ion-icon width="50px"></ion-icon> Registro </ion-button>
+  
+    </ion-card-content></div>
+
+
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="medium">
+    <ion-button expand="block" [routerLink]="['/home']" color="black">Home</ion-button>
+  </ion-toolbar>
+</ion-footer>

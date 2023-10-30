@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>camara</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-button (click)="takePhoto()">foto</ion-button>
+
+  <ion-card *ngFor="let i of imagenes">
+    <ion-img [src]="i.src"></ion-img>
+  </ion-card>
+  <div class="scanner-shell" [hidden]="!hasDevices">
+
+
+    <zxing-scanner
+    #scanner
+    start="true"
+    [device]="currentDevice"
+    (scanSuccess)="handleQrCodeResult($event)"
+    [formats]="formats"
+  ></zxing-scanner>
+
+    <section class="results" *ngIf="qrResultString">
+      <small>Result</small>
+      <strong>{{ qrResultString}}</strong>
+    </section>
+
+  </div>
+
+  <div>
+    <ion-card>
+      <ion-button (click)="scan()">Scan</ion-button>
+    </ion-card>
+  </div>
+
+  <ion-button expand="block" [routerLink]="['/datos']" color="black">
+    Ver Datos
+  </ion-button>
+
+</ion-content>
+

@@ -1,0 +1,7 @@
+{
+  "name": "cheecklist",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
