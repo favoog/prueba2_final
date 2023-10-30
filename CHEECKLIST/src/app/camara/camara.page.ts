@@ -34,6 +34,7 @@ export class CamaraPage implements OnInit {
   resultadoScan:any='';
 
   imagenes:any[] = [];
+  
 
   constructor(private navCtrl: NavController, private activatedRoute:ActivatedRoute) { }
 
