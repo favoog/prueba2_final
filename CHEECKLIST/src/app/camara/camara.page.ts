@@ -1,13 +1,8 @@
 import { Component, OnInit, ViewChild, VERSION } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { defineCustomElements } from '@ionic/pwa-elements/loader';
-import { ZXingScannerComponent } from '@zxing/ngx-scanner';
-import { Result } from '@zxing/library';
-import { BarcodeFormat } from '@zxing/library';
 import { NavController } from '@ionic/angular';
-
-//QR
 import { BarcodeScanner } from 'capacitor-barcode-scanner';
+//QR
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -20,12 +15,12 @@ export class CamaraPage implements OnInit {
 
   ngVersion = VERSION.full;
   @ViewChild('scanner', { static: true })
-  scanner!: ZXingScannerComponent;
+
 
   hasDevices!: boolean;
   hasPermission!: boolean;
   qrResultString!: string;
-  qrResult!: Result;
+  
   availableDevices!: MediaDeviceInfo[];
   currentDevice!: MediaDeviceInfo;
 
@@ -39,24 +34,6 @@ export class CamaraPage implements OnInit {
   constructor(private navCtrl: NavController, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    defineCustomElements(window);
-    this.scanner.camerasFound.subscribe((devices: MediaDeviceInfo[]) => {
-      this.hasDevices = true;
-      this.availableDevices = devices;
-
-      // selects the devices's back camera by default
-      for (const device of devices) {
-          if (/back|rear|environment/gi.test(device.label)) {
-              new this.scanner.deviceChange();
-              this.currentDevice = device;
-              break;
-          }
-      }
-    });
-
-    this.scanner.camerasNotFound.subscribe(() => this.hasDevices = false);
-    this.scanner.scanComplete.subscribe((result: Result) => this.qrResult = result);
-    this.scanner.permissionResponse.subscribe((perm: boolean) => this.hasPermission = perm);
 
   }
 
@@ -102,12 +79,7 @@ export class CamaraPage implements OnInit {
     console.log('Datos guardados en el localStorage:', datos);
 
   }
-  formats: BarcodeFormat[] = [
-  BarcodeFormat.QR_CODE,
-  BarcodeFormat.EAN_13,
-  BarcodeFormat.CODE_128,
-  BarcodeFormat.DATA_MATRIX
-];
+
 
 
 //QR

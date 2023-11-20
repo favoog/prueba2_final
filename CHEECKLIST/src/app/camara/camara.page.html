@@ -13,28 +13,15 @@
   <div class="scanner-shell" [hidden]="!hasDevices">
 
 
-    <zxing-scanner
-    #scanner
-    start="true"
-    [device]="currentDevice"
-    (scanSuccess)="handleQrCodeResult($event)"
-    [formats]="formats"
-  ></zxing-scanner>
 
-    <section class="results" *ngIf="qrResultString">
-      <small>Result</small>
-      <strong>{{ qrResultString}}</strong>
-    </section>
 
-  </div>
 
-  <div>
-    <ion-card>
-      <ion-button (click)="scan()">Scan</ion-button>
-    </ion-card>
-  </div>
-
+</div>
   <ion-button expand="block" [routerLink]="['/datos']" color="black">
+    Ver Datos
+  </ion-button>
+
+  <ion-button expand="block" (click)="scan()" color="black">
     Ver Datos
   </ion-button>
 
