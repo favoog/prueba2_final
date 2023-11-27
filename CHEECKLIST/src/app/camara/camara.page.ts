@@ -1,10 +1,8 @@
-import { Component, OnInit, ViewChild, VERSION } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { NavController } from '@ionic/angular';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { BarcodeScanner } from 'capacitor-barcode-scanner';
-//QR
 import { ActivatedRoute } from '@angular/router';
-
 
 @Component({
   selector: 'app-camara',
@@ -13,28 +11,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CamaraPage implements OnInit {
 
-  ngVersion = VERSION.full;
-  @ViewChild('scanner', { static: true })
-
-
-  hasDevices!: boolean;
-  hasPermission!: boolean;
-  qrResultString!: string;
-  
-  availableDevices!: MediaDeviceInfo[];
-  currentDevice!: MediaDeviceInfo;
-
-  //QR
+  imagenes:any[] = [];
   parametroIdEmpleado:number | undefined;
   resultadoScan:any='';
 
-  imagenes:any[] = [];
-  
+  constructor(private activatedRoute:ActivatedRoute) { }
 
-  constructor(private navCtrl: NavController, private activatedRoute:ActivatedRoute) { }
-
-  ngOnInit(): void {
-
+  ngOnInit() {
+    defineCustomElements(window);
   }
 
   async takePhoto(){
@@ -49,8 +33,8 @@ export class CamaraPage implements OnInit {
           source:cSourse,
           presentationStyle:'popover',
           promptLabelCancel: 'Cancelar',
-          promptLabelPhoto: 'Desde la galeria',
-          promptLabelPicture: 'Desde la camara',
+          promptLabelPhoto: 'Desde la camara',
+          promptLabelPicture: 'Desde la galeria',
           promptLabelHeader: 'Seleccione'
       });
 
@@ -66,29 +50,10 @@ export class CamaraPage implements OnInit {
     }
   }
 
-  handleQrCodeResult(resultString: string) {
-    console.log('Result:   ', resultString);
-    const componentes = resultString.split(',');
-    const datos: { [key: string]: string } = {};
-    componentes.forEach(componente => {
-      const [nombre, valor] = componente.split(':');
-      datos[nombre.trim()] = valor.trim();
-    });
-    this.navCtrl.navigateForward('usuarios');
-    localStorage.setItem('profesor',JSON.stringify(datos));
-    console.log('Datos guardados en el localStorage:', datos);
-
+  async scan(){
+    this.resultadoScan = (await  BarcodeScanner.scan()).code;
+    console.log("Resultado scan",JSON.parse(this.resultadoScan));
   }
 
 
-
-//QR
-
-async scan(){
-  this.resultadoScan = (await  BarcodeScanner.scan()).code;
-  console.log("Resultado scan",JSON.parse(this.resultadoScan));
 }
-
-
-}
-

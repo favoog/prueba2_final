@@ -1,14 +1,41 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
-    path: '',
-    redirectTo: 'home',
+    path: 'login',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'registro',
+    redirectTo: 'registro',
+    pathMatch: 'full'
+  },
+  {
+    path: 'camara',
+    redirectTo: 'camara',
+    pathMatch: 'full'
+  },
+  {
+    path: 'datos',
+    redirectTo: 'datos',
+    pathMatch: 'full'
+  },
+  {
+    path: 'a404',
+    redirectTo: 'a404',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'a404',
     pathMatch: 'full'
   },
   {
@@ -28,6 +55,7 @@ const routes: Routes = [
     loadChildren: () => import('./recuperar-password/recuperar-password.module').then( m => m.RecuperarPasswordPageModule)
   },
   {
+
     path: 'camara',
     loadChildren: () => import('./camara/camara.module').then( m => m.CamaraPageModule)
   },
@@ -35,6 +63,11 @@ const routes: Routes = [
     path: 'datos',
     loadChildren: () => import('./datos/datos.module').then( m => m.DatosPageModule)
   },
+  {
+    path: 'a404',
+    loadChildren: () => import('./a404/a404.module').then( m => m.A404PageModule)
+  },
+
 
 ];
 

@@ -7,23 +7,10 @@
 <ion-content [fullscreen]="true">
   <ion-button (click)="takePhoto()">foto</ion-button>
 
+  <ion-button (click)="scan()">Scan</ion-button>
+
   <ion-card *ngFor="let i of imagenes">
     <ion-img [src]="i.src"></ion-img>
   </ion-card>
-  <div class="scanner-shell" [hidden]="!hasDevices">
-
-
-
-
-
-</div>
-  <ion-button expand="block" [routerLink]="['/datos']" color="black">
-    Ver Datos
-  </ion-button>
-
-  <ion-button expand="block" (click)="scan()" color="black">
-    Ver Datos
-  </ion-button>
-
 </ion-content>
 
